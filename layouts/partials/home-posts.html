@@ -1,7 +1,7 @@
 <main class="main single" id="main">
     <div class="main-inner">
         {{ $paginator := .Paginate (where .Site.RegularPages "Section" "in" .Site.Params.mainSections) }}
-        {{ range $paginator.Pages }}
+        {{ range last 1 $paginator.Pages }}
             <article class="content post home">
                 <h2 class="post-title">
                     <a href="{{ .RelPermalink }}" class="summary-title-link">{{ .LinkTitle }}</a>
@@ -9,6 +9,7 @@
                 <div class="post-content">
                     {{ .Content }}
                 </div>
+                {{ .Lastmod }}
             </article>
         {{ end }}
     </div>
